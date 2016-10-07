@@ -22,7 +22,9 @@ from window_resize import test_window_resize
 from pick import test_pick
 
 def reset():
-    blt.set("window: size=80x25, cellsize=auto, title='Omni: menu'; font: default")
+    blt.set("window: size=80x25, cellsize=auto, title='Omni: menu';"
+            "font: default;"
+            "input: filter={keyboard}")
     blt.color("white")
    
 
