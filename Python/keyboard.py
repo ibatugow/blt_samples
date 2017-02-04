@@ -3,7 +3,7 @@
 from __future__ import division
 
 from collections import namedtuple
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 mkey = namedtuple("mkey", "vk x y w h caption")
 
@@ -201,10 +201,10 @@ def test_keyboard():
             if blt.state(k.vk):
                 fill_rectangle(6 + k.x, 1 + k.y, k.w, k.h, pressed_key)
                 blt.color(pressed_key_text)
-                blt.print_(6 + k.x, 1 + k.y, k.caption)
+                blt.puts(6 + k.x, 1 + k.y, k.caption)
             else:
                 blt.color(available_key_text)
-                blt.print_(6 + k.x, 1 + k.y, k.caption)
+                blt.puts(6 + k.x, 1 + k.y, k.caption)
 
         # Special case: Enter keys
         if blt.state(blt.TK_RETURN):
@@ -216,7 +216,7 @@ def test_keyboard():
                 u" ▐███▌\n" \
                 u" ▝▀▀▀▘\n"
             #blt.color(pressed_key)
-            blt.print_(6 + 29, 6, "[color=#%x]%s" % (pressed_key,region))
+            blt.puts(6 + 29, 6, "[color=#%x]%s" % (pressed_key,region))
 
         if blt.check(blt.TK_KP_ENTER):
             # Numpad
@@ -236,16 +236,16 @@ def test_keyboard():
 
         blt.color(grid_color)
         for i, line in enumerate(grid):
-            blt.print_(6, 1 + i, line)
+            blt.puts(6, 1 + i, line)
 
         blt.color(unavailable_key_text)
         for k in unavailable_keys:
-            blt.print_(6 + k.x, 1 + k.y, k.caption)
+            blt.puts(6 + k.x, 1 + k.y, k.caption)
 
         blt.color(normal_text)
-        blt.print_(6, 1 + 15, "[color=orange]NOTE:[/color] keys printed in dark gray color are not available by design.")
-        blt.print_(6, 1 + 17, "[color=orange]NOTE:[/color] for demonstration purposes Escape will not close this demo;")
-        blt.print_(6, 1 + 18, "use Shift+Escape combination to exit.")
+        blt.puts(6, 1 + 15, "[color=orange]NOTE:[/color] keys printed in dark gray color are not available by design.")
+        blt.puts(6, 1 + 17, "[color=orange]NOTE:[/color] for demonstration purposes Escape will not close this demo;")
+        blt.puts(6, 1 + 18, "use Shift+Escape combination to exit.")
 
         blt.refresh()
 

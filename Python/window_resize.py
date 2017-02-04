@@ -1,7 +1,7 @@
 # coding=utf8
 
 from __future__ import division
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_window_resize():
     blt.set("window: title='Omni: window resizing', resizeable=true, minimum-size=27x5")
@@ -18,7 +18,7 @@ def test_window_resize():
         for y in range(h):
             blt.put(0, y, symbol if y % 2 else '#')
             blt.put(w - 1, y, symbol if y % 2 else '#')
-        blt.print_(3, 2, "Terminal size is %dx%d" % (w, h))
+        blt.puts(3, 2, "Terminal size is %dx%d" % (w, h))
         blt.refresh()
 
         key = blt.read()

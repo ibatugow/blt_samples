@@ -1,16 +1,18 @@
 # coding=utf8
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_manual_cellsize():
     blt.set("window.title='Omni: manual cellsize'")
 
     font_name = "../Media/VeraMono.ttf"
+    font_hintings = ["normal", "autohint", "none"]
+    font_hinting = 0
     font_size = 12
     cell_width = 8
     cell_height = 16
 
-    def setup_font(): blt.set("font: %s, size=%d" % (font_name, font_size))
+    def setup_font(): blt.set("font: %s, size=%d, hinting=%s" % (font_name, font_size, font_hintings[font_hinting]))
     def setup_cellsize(): blt.set("window: cellsize=%dx%d" % (cell_width, cell_height))
 
     setup_cellsize()
@@ -20,11 +22,13 @@ def test_manual_cellsize():
         blt.clear()
         blt.color("white")
 
-        blt.print_(2, 1, "Hello, world!")
-        blt.print_(2, 3, "[color=orange]Font size:[/color] %d" % font_size)
-        blt.print_(2, 4, "[color=orange]Cell size:[/color] %dx%d" % (cell_width, cell_height))
-        blt.print_(2, 6, "[color=orange]TIP:[/color] Use arrow keys to change cell size")
-        blt.print_(2, 7, "[color=orange]TIP:[/color] Use Shift+Up/Down arrow keys to change font size")
+        blt.puts(2, 1, "Hello, world!")
+        blt.puts(2, 3, "[color=orange]Font size:[/color] %d" % font_size)
+        blt.puts(2, 4, "[color=orange]Font hinting:[/color] %s" % font_hintings[font_hinting])
+        blt.puts(2, 5, "[color=orange]Cell size:[/color] %dx%d" % (cell_width, cell_height))
+        blt.puts(2, 7, "[color=orange]TIP:[/color] Use arrow keys to change cell size")
+        blt.puts(2, 8, "[color=orange]TIP:[/color] Use Shift+Up/Down arrow keys to change font size")
+        blt.puts(2, 9, "[color=orange]TIP:[/color] Use TAB to switch font hinting mode")
 
         blt.refresh()
 
@@ -49,6 +53,9 @@ def test_manual_cellsize():
             setup_font()
         elif key == blt.TK_DOWN and blt.state(blt.TK_SHIFT) and font_size > 4:
             font_size -= 1
+            setup_font()
+        elif key == blt.TK_TAB:
+            font_hinting = (font_hinting + 1) % len(font_hintings)
             setup_font()
     
     blt.set("font: default; window.cellsize=auto")    

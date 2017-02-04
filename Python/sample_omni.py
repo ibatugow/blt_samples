@@ -1,4 +1,4 @@
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 from speed import test_speed
 from basic_output import test_basic_output
@@ -61,9 +61,9 @@ def main():
         blt.clear()
         for (i,e) in enumerate(entries):
             shortcut = '123456789abcdefghijklmnopqrstuvwxyz'[i]
-            blt.print_(2, 1+i, "[color=orange]%c.[/color] %s%s" % (shortcut, "" if e[1] else "[color=gray]", e[0]))
+            blt.puts(2, 1+i, "[color=orange]%c.[/color] %s%s" % (shortcut, "" if e[1] else "[color=gray]", e[0]))
             
-        blt.print_(2, 23, "[color=orange]ESC.[/color] Exit")
+        blt.puts(2, 23, "[color=orange]ESC.[/color] Exit")
         blt.refresh()
 
         key = blt.read()

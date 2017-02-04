@@ -3,7 +3,7 @@
 from __future__ import division
 
 from ctypes import c_uint32, addressof
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_layers():
     blt.set("window.title='Omni: layers'")
@@ -15,15 +15,15 @@ def test_layers():
     blt.clear()
     blt.color("white")
 
-    blt.print_(2, 1, "[color=orange]1.[/color] Without layers:")
+    blt.puts(2, 1, "[color=orange]1.[/color] Without layers:")
     blt.put(7, 3, 0xE000)   
-    blt.print_(5, 4, "[color=dark green]abcdefghij")
+    blt.puts(5, 4, "[color=dark green]abcdefghij")
 
-    blt.print_(2, 8, "[color=orange]2.[/color] With layers:")
+    blt.puts(2, 8, "[color=orange]2.[/color] With layers:")
     blt.layer(1)
     blt.put(7, 10, 0xE000)
     blt.layer(0)
-    blt.print_(5, 11, "[color=dark green]abcdefghij")
+    blt.puts(5, 11, "[color=dark green]abcdefghij")
 
     blt.refresh()
 

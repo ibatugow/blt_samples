@@ -1,6 +1,6 @@
 # coding=utf8
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_tilesets():
     blt.set("window.title='Omni: tilesets'")
@@ -15,20 +15,20 @@ def test_tilesets():
     blt.clear()
     blt.color("white")
 
-    blt.print_(2, 1, "[color=orange]1.[/color] Of course, there is default font tileset.")
+    blt.puts(2, 1, "[color=orange]1.[/color] Of course, there is default font tileset.")
 
-    blt.print_(2, 3, "[color=orange]2.[/color] You can load some arbitrary tiles and use them as glyphs:")
-    blt.print_(2+3, 4,
+    blt.puts(2, 3, "[color=orange]2.[/color] You can load some arbitrary tiles and use them as glyphs:")
+    blt.puts(2+3, 4,
         "Fire rune ([color=red][U+E102][/color]), "
         "water rune ([color=lighter blue][U+E103][/color]), "
         "earth rune ([color=darker green][U+E104][/color])")
 
-    blt.print_(2, 6, "[color=orange]3.[/color] Tiles are not required to be of the same size as font symbols:")
+    blt.puts(2, 6, "[color=orange]3.[/color] Tiles are not required to be of the same size as font symbols:")
     blt.put(2+3+0, 7, 0xE200+7)
     blt.put(2+3+5, 7, 0xE200+8)
     blt.put(2+3+10, 7, 0xE200+9)
 
-    blt.print_(2, 10, "[color=orange]4.[/color] Like font characters, tiles may be freely colored and combined:")
+    blt.puts(2, 10, "[color=orange]4.[/color] Like font characters, tiles may be freely colored and combined:")
     blt.put(2+3+0, 11, 0xE200+8)
     blt.color("lighter orange")
     blt.put(2+3+5, 11, 0xE200+8)
@@ -45,11 +45,11 @@ def test_tilesets():
 
     blt.put(30 + len(order) * 4, 11, 0xE200 + 15)
 
-    blt.print_(2, 14, "[color=orange]5.[/color] And tiles can even come from TrueType fonts like this:")
+    blt.puts(2, 14, "[color=orange]5.[/color] And tiles can even come from TrueType fonts like this:")
     for i in range(6):
         blt.put(5 + i * 5, 15, 0xE300 + i)
 
-    blt.print_(5, 18, "...or like this:\n[font=zodiac]D F G S C")
+    blt.puts(5, 18, "...or like this:\n[font=zodiac]D F G S C")
 
     blt.refresh()
 

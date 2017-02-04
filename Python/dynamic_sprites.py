@@ -2,7 +2,7 @@
 
 from __future__ import division
 from ctypes import c_uint32, addressof
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 from collections import namedtuple
 
 map_ = [
@@ -102,7 +102,7 @@ def test_dynamic_sprites():
         blt.color("white")
         blt.put_ext(view_width * 4 + 1, 0, margin, margin, 0xE100)
 
-        blt.print_(1, view_height * 2 + 1, "[color=orange]Tip:[/color] use arrow keys to move viewport over the map")
+        blt.puts(1, view_height * 2 + 1, "[color=orange]Tip:[/color] use arrow keys to move viewport over the map")
 
         blt.refresh()
 

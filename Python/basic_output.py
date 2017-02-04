@@ -1,7 +1,7 @@
 # coding=utf8
 
 from __future__ import division
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_basic_output():
     blt.set("window.title='Omni: basic output'")
@@ -9,7 +9,7 @@ def test_basic_output():
     blt.color("white")
 
     # Wide color range
-    n = blt.print_(2, 1, "[color=orange]1.[/color] Wide color range: ")
+    n,_ = blt.puts(2, 1, "[color=orange]1.[/color] Wide color range: ")
     long_word = "antidisestablishmentarianism."
     long_word_length = len(long_word)
     for i in range(long_word_length):
@@ -21,15 +21,15 @@ def test_basic_output():
 
     blt.color("white")
 
-    blt.print_(2, 3, "[color=orange]2.[/color] Backgrounds: [color=black][bkcolor=gray] grey [/bkcolor] [bkcolor=red] red ")
+    blt.puts(2, 3, "[color=orange]2.[/color] Backgrounds: [color=black][bkcolor=gray] grey [/bkcolor] [bkcolor=red] red ")
 
-    blt.print_(2, 5, "[color=orange]3.[/color] Unicode support: Кириллица Ελληνικά α=β²±2°")
+    blt.puts(2, 5, "[color=orange]3.[/color] Unicode support: Кириллица Ελληνικά α=β²±2°")
 
-    blt.print_(2, 7, "[color=orange]4.[/color] Tile composition: a + [color=red]/[/color] = a[+][color=red]/[/color], a vs. a[+][color=red]¨[/color]")
+    blt.puts(2, 7, "[color=orange]4.[/color] Tile composition: a + [color=red]/[/color] = a[+][color=red]/[/color], a vs. a[+][color=red]¨[/color]")
 
     blt.printf(2, 9, "[color=orange]5.[/color] Box drawing symbols:")
 
-    blt.print_(5, 11,
+    blt.puts(5, 11,
         "   ┌────────┐  \n"
         "   │!......s└─┐\n"
         "┌──┘........s.│\n"

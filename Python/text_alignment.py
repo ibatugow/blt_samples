@@ -4,7 +4,7 @@ from __future__ import division
 
 __all__ = ['test_text_alignment']
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 Left   = 0
 Center = 1
@@ -38,10 +38,16 @@ def test_text_alignment():
     blt.set("window: title='Omni: text alignment', resizeable=true, minimum-size=44x12")
     blt.composition(True)
 
-    horizontal_names = ("left", "center", "right")
-    vertical_names = ("top", "center", "bottom")
-    horizontal = Left
-    vertical = Top
+    names =	{
+        blt.TK_ALIGN_LEFT: "TK_ALIGN_LEFT",
+        blt.TK_ALIGN_CENTER: "TK_ALIGN_CENTER",
+        blt.TK_ALIGN_RIGHT: "TK_ALIGN_RIGHT",
+        blt.TK_ALIGN_TOP: "TK_ALIGN_TOP",
+        blt.TK_ALIGN_MIDDLE: "TK_ALIGN_MIDDLE",
+        blt.TK_ALIGN_BOTTOM: "TK_ALIGN_BOTTOM",
+	}
+    horizontal_align = blt.TK_ALIGN_LEFT
+    vertical_align = blt.TK_ALIGN_TOP
 
     frame = update_geometry()
 
@@ -54,40 +60,26 @@ def test_text_alignment():
         blt.bkcolor("none")
 
         # Comment
-        blt.print_(
+        blt.puts(
             frame.left,
             frame.top - padding_v - 2,
             "Use arrows to change text alignment.\n"
-            "Current alignment is [c=orange]%s-%s[/c]." % 
-            (vertical_names[vertical], horizontal_names[horizontal])
+            "Current alignment is [c=orange]%s[/c] | [c=orange]%s[/c]." % 
+            (names[vertical_align], names[horizontal_align])
         )
 
         #Text origin
-        if horizontal == Right:
-            x = frame.left + frame.width - 1
-        elif horizontal == Center:
-            x = frame.left + frame.width // 2
-        else: # Left
-            x = frame.left
-
-        if vertical ==  Bottom:
-            y = frame.top + frame.height - 1
-        elif vertical == Center:
-            y = frame.top + frame.height // 2
-        else: # Top
-            y = frame.top
-
-        blt.color("darkest orange")
-        blt.put(x, y, 0x2588)
+        x, y = frame.left, frame.top
 
         blt.color("white")
-        blt.print_(
+        blt.puts(
             x, y,
-            "[wrap=%dx%d][align=%s-%s]%s" %
-            (frame.width, frame.height,
-             vertical_names[vertical], horizontal_names[horizontal],
-            lorem_ipsum)
+            lorem_ipsum,
+            frame.width, frame.height, vertical_align | horizontal_align
         )
+        
+        blt.puts(80-14, 3, "[c=orange][U+2588]")
+        blt.puts(80-14, 3, "12345\nabc\n-=#=-", align=vertical_align | horizontal_align)
 
         blt.refresh()
 
@@ -97,16 +89,16 @@ def test_text_alignment():
             break
 
         elif key == blt.TK_LEFT:
-            horizontal = max(horizontal-1, Left)
+            horizontal_align = blt.TK_ALIGN_CENTER if horizontal_align == blt.TK_ALIGN_RIGHT else blt.TK_ALIGN_LEFT
 
         elif key == blt.TK_RIGHT:
-            horizontal = min(horizontal+1, Right)
+            horizontal_align = blt.TK_ALIGN_CENTER if horizontal_align == blt.TK_ALIGN_LEFT else blt.TK_ALIGN_RIGHT
 
         elif key == blt.TK_UP:
-            vertical = max(vertical-1, Top)
+            vertical_align = blt.TK_ALIGN_MIDDLE if vertical_align == blt.TK_ALIGN_BOTTOM else blt.TK_ALIGN_TOP
 
         elif key == blt.TK_DOWN:
-            vertical = min(vertical+1, Bottom)
+            vertical_align = blt.TK_ALIGN_MIDDLE if vertical_align == blt.TK_ALIGN_TOP else blt.TK_ALIGN_BOTTOM
             
         elif key == blt.TK_RESIZED:
             frame = update_geometry()

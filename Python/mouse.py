@@ -3,7 +3,7 @@
 from __future__ import division
 
 from collections import namedtuple
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 class Rect(object):
     def __init__(self, x, y, width, height):
@@ -48,10 +48,10 @@ def test_mouse():
         blt.clear()
 
         blt.color("white")
-        blt.print_(1, 1, "Received [color=orange]%d[/color] %s" % (counter, "event" if counter == 1 else "events"))
+        blt.puts(1, 1, "Received [color=orange]%d[/color] %s" % (counter, "event" if counter == 1 else "events"))
 
         blt.color("white")
-        blt.print_(
+        blt.puts(
             1, 3,
             "Buttons: "
             "[color=%s]left "
@@ -65,7 +65,7 @@ def test_mouse():
                 "orange" if blt.state(blt.TK_MOUSE_X1) else "dark gray",
                 "orange" if blt.state(blt.TK_MOUSE_X2) else "dark gray"))
 
-        n = blt.print_(
+        blt.puts(
             1, 4,
             "Cursor: [color=orange]%d:%d[/color] [color=dark gray]cells[/color]"
             ", [color=orange]%d:%d[/color] [color=dark gray]pixels[/color]" % (
@@ -74,23 +74,23 @@ def test_mouse():
                 blt.state(blt.TK_MOUSE_PIXEL_X),
                 blt.state(blt.TK_MOUSE_PIXEL_Y)))
 
-        blt.print_(
+        blt.puts(
             1, 5,
             "Wheel: [color=orange]%d[/color] [color=dark gray]delta[/color]"
             ", [color=orange]%d[/color] [color=dark gray]cumulative" % (
                 blt.state(blt.TK_MOUSE_WHEEL), scroll))
 
-        blt.print_(
-            1, 7, "[color=%s][U+25CF][/color] Precise mouse movement" % ("orange" if precise_mouse else "black"))
+        blt.puts(1, 7,
+            "[color=%s][U+25CF][/color] Precise mouse movement" % ("orange" if precise_mouse else "black"))
 
         blt.put(1, 7, 0x25CB)
 
-        blt.print_(
-            1, 8, "[color=%s][U+25CF][/color] Mouse cursor is visible" % ("orange" if cursor_visible else "black"))
+        blt.puts(1, 8,
+            "[color=%s][U+25CF][/color] Mouse cursor is visible" % ("orange" if cursor_visible else "black"))
 
         blt.put(1, 8, 0x25CB)
 
-        blt.print_(double_click_area.x, double_click_area.y - 1, "Double-click here:")
+        blt.puts(double_click_area.x, double_click_area.y - 1, "Double-click here:")
         blt.color("darker orange" if plate else "darker gray")
         double_click_area.fill()
 

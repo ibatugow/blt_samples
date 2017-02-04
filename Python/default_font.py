@@ -1,6 +1,6 @@
 # coding=utf8
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 from wgl4 import wgl4_ranges, wgl4_set
 
 def test_default_font():
@@ -11,20 +11,20 @@ def test_default_font():
 
     while True:
         blt.clear()
-        blt.print_(2, 1, "[color=white]Select unicode character range:")
+        blt.puts(2, 1, "[color=white]Select unicode character range:")
 
         for i, r in enumerate(wgl4_ranges):
             selected = i == current_range
             blt.color("orange" if selected else "light_gray")
-            blt.print_(1, 2 + i, "%s%s" % ("[U+203A]" if selected else " ", r.name))
+            blt.puts(1, 2 + i, "%s%s" % ("[U+203A]" if selected else " ", r.name))
 
         r = wgl4_ranges[current_range]
         for j in range(16):
-            blt.print_(hoffset + 6 + j * 2, 1, "[color=orange]%X" % j)
+            blt.puts(hoffset + 6 + j * 2, 1, "[color=orange]%X" % j)
 
         y = 0
         for code in range(r.start, r.end + 1):
-            if code % 16 == 0: blt.print_(hoffset, 2 + y, "[color=orange]%04X:" % code)
+            if code % 16 == 0: blt.puts(hoffset, 2 + y, "[color=orange]%04X:" % code)
 
             blt.color("white" if code in wgl4_set else "dark gray")
             blt.put(hoffset + 6 + (code % 16) * 2, 2 + y, code)
@@ -32,8 +32,8 @@ def test_default_font():
             if (code+1) % 16 == 0: y += 1
 
         blt.color("white")
-        blt.print_(hoffset, 20, "[color=orange]TIP:[/color] Use ↑/↓ keys to select range")
-        blt.print_(hoffset, 22, "[color=orange]NOTE:[/color] Character code points printed in\ngray are not included in the WGL4 set.")
+        blt.puts(hoffset, 20, "[color=orange]TIP:[/color] Use ↑/↓ keys to select range")
+        blt.puts(hoffset, 22, "[color=orange]NOTE:[/color] Character code points printed in\ngray are not included in the WGL4 set.")
 
         blt.refresh()
 

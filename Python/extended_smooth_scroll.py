@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 import random
 
 fps = 40
@@ -50,8 +50,8 @@ def test_extended_smooth_scroll():
         hc = (screen_width + 2*tile_size - tx - 1) // tile_size        
         vc = (screen_height + 2*tile_size - ty - 1) // tile_size
 
-        blt.print_(2, 1, "speed: %d, %d" % (hspeed, vspeed))
-        blt.print_(2, 2, "offset: %d/%d, %d/%d" % (ix, jx, iy, jy))
+        blt.puts(2, 1, "speed: %d, %d" % (hspeed, vspeed))
+        blt.puts(2, 2, "offset: %d/%d, %d/%d" % (ix, jx, iy, jy))
 
         for y in range(vc + 1):
             my = (jy + y) % map_size

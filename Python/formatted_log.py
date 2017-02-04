@@ -4,7 +4,7 @@ from __future__ import division
 
 __all__ = ['test_formatted_log']
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 from random import randint, choice
 from math import ceil
 
@@ -71,7 +71,7 @@ class MessageList(object):
         self.heights = []
 
     def update_heights(self, width):
-        self.heights = [blt.measure("[bbox=%d]%s" % (width, text)) for text in self.texts]
+        self.heights = [blt.measure(text, width)[1] for text in self.texts]
         # recompute total height, including the blank lines between messages
         self.total_height = sum(self.heights) + len(self.texts) - 1 
 
@@ -190,7 +190,7 @@ def test_formatted_log():
                 # stop when message is below frame
                 if current_line - frame.offset > frame.height: break
                 # drawing message
-                blt.print_(padding_left, padding_top + current_line - frame.offset, "[bbox=%d]%s" % (frame.width, text))
+                blt.puts(padding_left, padding_top + current_line - frame.offset, text, frame.width)
             current_line += height + 1
 
         blt.crop(padding_left, padding_top, frame.width, frame.height)

@@ -3,7 +3,7 @@
 from __future__ import division
 from random import seed, randrange, choice
 from string import ascii_lowercase
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_pick():
     blt.set("window.title='Omni: examining cell contents'")
@@ -11,7 +11,7 @@ def test_pick():
 
     blt.clear()
     blt.color("white")
-    blt.print_(2, 1, "Move mouse over characters:")
+    blt.puts(2, 1, "Move mouse over characters:")
 
     blt.bkcolor("darkest gray")
     blt.clear_area(2, 3, 76, 19)
@@ -23,7 +23,7 @@ def test_pick():
     seed()
     for i in range(100):
         combined = randrange(5) == 0
-        n = (randrange(2) + 2) if combined else 1
+        n = randrange(2, 4) if combined else 1
         x = randrange(2, 78)
         y = randrange(3, 22)
 
@@ -52,11 +52,11 @@ def test_pick():
                 if code == 0: break
 
                 color = blt.pick_color(x, y, n)
-                blt.print_(2 + n * 2, 23, u"[color=#%x]%c" % (color, code))
+                blt.puts(2 + n * 2, 23, u"[color=#%x]%c" % (color, code))
                 n += 1
 
             if n == 0:
-                blt.print_(2, 23, "Empty cell")
+                blt.puts(2, 23, "Empty cell")
 
         blt.refresh()
 

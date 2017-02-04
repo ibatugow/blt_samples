@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 from math import pi, sin, cos
 
 def test_extended_basics():
@@ -30,7 +30,7 @@ def test_extended_basics():
         blt.clear()
         blt.color("white")
 
-        blt.print_(2, 1, "[color=orange]1.[/color] put_ext(x, y, [color=orange]dx[/color], [color=orange]dy[/color], code)")
+        blt.puts(2, 1, "[color=orange]1.[/color] put_ext(x, y, [color=orange]dx[/color], [color=orange]dy[/color], code)")
         for i in range(n_symbols):
             angle_delta = 2 * pi / n_symbols
             dx = cos(angle + i * angle_delta) * radius * blt.state(blt.TK_CELL_WIDTH)
@@ -40,11 +40,11 @@ def test_extended_basics():
 
         angle += 2 * pi / (2 * fps)
 
-        blt.print_(2, 9, "[color=orange]2.[/color] put_ext(x, y, dx, dy, code, [color=orange]corners[/color])")
+        blt.puts(2, 9, "[color=orange]2.[/color] put_ext(x, y, dx, dy, code, [color=orange]corners[/color])")
         blt.put_ext(5, 11, 0, 0, 0xE000+19, m00)
         blt.put_ext(10, 11, 0, 0, 0xE000+19, m01)
 
-        blt.print_(2, 14, "[color=orange]3.[/color] put_ext + composition")
+        blt.puts(2, 14, "[color=orange]3.[/color] put_ext + composition")
         x1 = 5
         y1 = 16
         blt.put(x1+0, y1+0, 0xE000+19)

@@ -1,6 +1,6 @@
 # coding=utf8
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_multiple_fonts():
     blt.set("window.title='Omni: multiple fonts in scene'")
@@ -13,17 +13,19 @@ def test_multiple_fonts():
 
     blt.clear()
     blt.color("white")
-    h = blt.print_(
+    _,h = blt.puts( 
         2, 1,
-        "[wrap=60]If you [color=orange][font=italic]really[/font][/color] want, "
+        "If you [color=orange][font=italic]really[/font][/color] want, "
         "you can even put [color=orange][font=bold]emphasis[/font][/color] on a text. "
         "This works by loading several truetype tilesets with custom codepages to an "
-        "unused code points and using [color=orange]font[/color] postformatting tag."
+        "unused code points and using [color=orange]font[/color] postformatting tag.",
+        width=60
     )
 
-    blt.print_(
+    blt.puts(
         2, 1+h+1,
-        "[font=huge][wrap=60]It's pretty easy to print in bigger fonts as well."
+        "[font=huge]It's pretty easy to print in bigger fonts as well.",
+        width=60
     )
     blt.refresh()
 

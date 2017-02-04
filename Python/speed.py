@@ -1,7 +1,7 @@
 # coding=utf8
 
 from __future__ import division     # for python 2.x
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 from time import time
 import random
 
@@ -67,8 +67,8 @@ def test_speed():
                 blt.color(alpha)
                 blt.put(x, y, ord('0') + (r1 + r0[yy + x]) % 10)
 
-        blt.print_(2, 1, "[color=black]vsync: %s\nFPS: %d" % ("yes" if vsync else "no", fps_value))
-        blt.print_(2, 4, "[color=black]Press TAB to switch vsync on an off")
+        blt.puts(2, 1, "[color=black]vsync: %s\nFPS: %d" % ("yes" if vsync else "no", fps_value))
+        blt.puts(2, 4, "[color=black]Press TAB to switch vsync on an off")
         blt.refresh()
 
         fps_counter += 1
@@ -99,29 +99,3 @@ if __name__ == "__main__":
     blt.color("white")
     test_speed()
     blt.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

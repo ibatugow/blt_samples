@@ -1,7 +1,7 @@
 # coding=utf8
 
 from __future__ import division
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_input_filtering():
     blt.set("window.title='Omni: input filtering'")
@@ -38,21 +38,22 @@ def test_input_filtering():
         blt.clear()
         blt.color("white")
 
-        h = blt.print_(
+        _,h = blt.puts(
             2, 1,
-            "[bbox=76]Modify input filter by pressing corresponding numbers (digits are added "
+            "Modify input filter by pressing corresponding numbers (digits are added "
             "to filter automatically). Gray color ([color=%s]like this[/color]) means that "
             "event is disabled. Regular white color means keypress is enabled. Blueish color "
             "([color=%s]like this[/color]) means both keypress and keyrelease are enabled.\n\n"
-            "Both CLOSE and ESCAPE close this demo." % (colors[0], colors[2]))
+            "Both CLOSE and ESCAPE close this demo." % (colors[0], colors[2]),
+            width=76)
 
         for i, event in enumerate(events):
-            blt.print_(
+            blt.puts(
                 2, 1 + h + 1 + i,
                 "[color=orange]%i[/color]. [color=%s]%s" %
                     (i, colors[event[1]], event[0]))
 
-        blt.print_(
+        blt.puts(
             2, 1 + h + 1 + len(events) + 1,
             "Events read: [color=orange]%i" % event_counter)
 

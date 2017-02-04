@@ -1,7 +1,7 @@
 # coding=utf8
 
 from ctypes import c_uint32, addressof
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_sprites():
     blt.set("window.title='Omni: sprites'")
@@ -21,11 +21,11 @@ def test_sprites():
     blt.clear()
 
     blt.color("black")
-    blt.print_(2, 1, "[color=black]This primarily serves as a quick test of image format support")
-    blt.print_(2, 3, "1. Background is loaded from a JPEG file")
-    blt.print_(2, 5, "2. Dragon sprite is loaded from a PNG file\n   image is upscaled 2x with nearest neighbourhood filter")
-    blt.print_(2, 8, "3. Five elements diagram is loaded from BMP file\n   image is downscaled with bilinear filer")
-    blt.print_(2, 11, "4. Color gradient is loaded from 2x2 in-memory buffer\n   image is upscaled 64x with bicubic filter")
+    blt.puts(2, 1, "[color=black]This primarily serves as a quick test of image format support")
+    blt.puts(2, 3, "1. Background is loaded from a JPEG file")
+    blt.puts(2, 5, "2. Dragon sprite is loaded from a PNG file\n   image is upscaled 2x with nearest neighbourhood filter")
+    blt.puts(2, 8, "3. Five elements diagram is loaded from BMP file\n   image is downscaled with bilinear filer")
+    blt.puts(2, 11, "4. Color gradient is loaded from 2x2 in-memory buffer\n   image is upscaled 64x with bicubic filter")
 
     blt.color("white")
     blt.put(0, 0, 0xE000) # Background

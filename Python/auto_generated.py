@@ -1,6 +1,6 @@
 # coding=utf8
 
-import PyBearLibTerminal as blt
+from bearlibterminal import terminal as blt
 
 def test_auto_generated():
     blt.set("window.title='Omni: auto-generated tileset'")
@@ -14,22 +14,22 @@ def test_auto_generated():
         blt.clear()
         blt.color("white")
 
-        blt.print_(2, 1, "[color=orange]Cell size:[/color] %dx%d" % (cell_width, cell_height))
-        blt.print_(2, 3, "[color=orange]TIP:[/color] Use arrow keys\nto change cell size")
+        blt.puts(2, 1, "[color=orange]Cell size:[/color] %dx%d" % (cell_width, cell_height))
+        blt.puts(2, 3, "[color=orange]TIP:[/color] Use arrow keys\nto change cell size")
 
         for j in range(16):
-            blt.print_(hoffset+6+j*2, 1, "[color=orange]%X" % j)
+            blt.puts(hoffset+6+j*2, 1, "[color=orange]%X" % j)
 
         y = 0
         for code in range(0x2500, 0x259F+1): 
             if code%16 == 0:
-                blt.print_(hoffset, 2 + y * 1, " [color=orange]%04X" % code)
+                blt.puts(hoffset, 2 + y * 1, " [color=orange]%04X" % code)
 
             blt.put(hoffset + 6 + (code%16) * 2, 2 + y * 1, code)
 
             if (code+1)%16 == 0: y += 1
 
-        blt.print_(
+        blt.puts(
             2, 6,
             u"┌─┐┌─┐┌─┐┌─┐┌─┐┌─┐┌─┐┌─┐┌─┐\n"
             u"│Z││A││ ││W││A││R││U││D││O│\n"
