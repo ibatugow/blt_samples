@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 
 from ctypes import c_uint32, addressof
 from bearlibterminal import terminal as blt

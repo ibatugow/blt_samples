@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 
 from bearlibterminal import terminal as blt
 from wgl4 import wgl4_ranges, wgl4_set

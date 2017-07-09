@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from bearlibterminal import terminal as blt
 
 from speed import test_speed

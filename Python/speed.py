@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 
 from __future__ import division     # for python 2.x
 from bearlibterminal import terminal as blt
